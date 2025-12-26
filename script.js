@@ -23,18 +23,43 @@ document.getElementById('btnRetry').addEventListener('click', function () {
     answerNumber = Math.floor((minValue + maxValue) / 2);
     gameRun = true;
     orderNumberField.innerText = orderNumber;
-    answerField.innerText = `Вы загадали число ${answerNumber}?`;
+    const questionRandom = Math.round(Math.random() * 2);
+    let questionPhrase;
+    switch (questionRandom) {
+        case 0:
+            questionPhrase = `Думаю, вы загадали число ${answerNumber}?`;
+            break;
+        case 1:
+            questionPhrase = `Да тут все понятно! Ты загадал ${answerNumber}?`;
+            break;
+        case 2:
+            questionPhrase = `Я очень надеюсь, что это число ${answerNumber}?`;
+            break;
+        default:
+            questionPhrase = `Вы загадали число ${answerNumber}?`;
+    }
+    answerField.innerText = questionPhrase;
     alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
 });
 
 document.getElementById('btnOver').addEventListener('click', function () {
     if (gameRun){
         if (minValue === maxValue){
-            const phraseRandom = Math.round( Math.random());
-            const answerPhrase = (phraseRandom === 1) ?
-                `Вы загадали неправильное число!\n\u{1F914}` :
-                `Я сдаюсь..\n\u{1F92F}`;
-
+            const phraseRandom = Math.round(Math.random() * 2);
+            let answerPhrase;
+            switch (phraseRandom) {
+                case 0:
+                    answerPhrase = `Не нужно больше загадывать это число, оно неправильное!\n\u{1F914}`;
+                    break;
+                case 1:
+                    answerPhrase = `Получается, что я сдаюсь..\n\u{1F92F}`;
+                    break;
+                case 2:
+                    answerPhrase = `Мне кажется, или тут что-то не так...\n\u{1F928}`;
+                    break;
+                default:
+                    answerPhrase = `Я сдаюсь..\n\u{1F92F}`;
+            }
             answerField.innerText = answerPhrase;
             gameRun = false;
         } else {
@@ -42,19 +67,45 @@ document.getElementById('btnOver').addEventListener('click', function () {
             answerNumber  = Math.floor((minValue + maxValue) / 2);
             orderNumber++;
             orderNumberField.innerText = orderNumber;
-            answerField.innerText = `Вы загадали число ${answerNumber }?`;
+            const questionRandom = Math.round(Math.random() * 2);
+            let questionPhrase;
+            switch (questionRandom) {
+                case 0:
+                    questionPhrase = `Может быть это число ${answerNumber}?`;
+                    break;
+                case 1:
+                    questionPhrase = `Да это легко! В следующий раз нормально загадывай и нормально будет. Ты загадал ${answerNumber}?`;
+                    break;
+                case 2:
+                    questionPhrase = `Уверен, что это число ${answerNumber}?`;
+                    break;
+                default:
+                    questionPhrase = `Вы загадали число ${answerNumber}?`;
+            }
+            
+            answerField.innerText = questionPhrase;
         }
     }
-})
+});
 
 document.getElementById('btnLess').addEventListener('click', function () {
     if (gameRun){
         if (minValue === maxValue){
-            const phraseRandom = Math.round(Math.random());
-            const answerPhrase = (phraseRandom === 1) ?
-                `Вы загадали неправильное число!\n\u{1F914}` :
-                `Я сдаюсь..\n\u{1F92F}`;
-
+            const phraseRandom = Math.round(Math.random() * 2);
+            let answerPhrase;
+            switch (phraseRandom) {
+                case 0:
+                    answerPhrase = `Не нужно больше загадывать это число, оно неправильное!\n\u{1F914}`;
+                    break;
+                case 1:
+                    answerPhrase = `Получается, что я сдаюсь..\n\u{1F92F}`;
+                    break;
+                case 2:
+                    answerPhrase = `Мне кажется, или тут что-то не так...\n\u{1F928}`;
+                    break;
+                default:
+                    answerPhrase = `Я сдаюсь..\n\u{1F92F}`;
+            }
             answerField.innerText = answerPhrase;
             gameRun = false;
         } else {
@@ -62,15 +113,46 @@ document.getElementById('btnLess').addEventListener('click', function () {
             answerNumber = Math.floor((minValue + maxValue) / 2);
             orderNumber++;
             orderNumberField.innerText = orderNumber;
-            answerField.innerText = `Вы загадали число ${answerNumber}?`;
+            const questionRandom = Math.round(Math.random() * 2);
+            let questionPhrase;
+            switch (questionRandom) {
+                case 0:
+                    questionPhrase = `Может быть это число ${answerNumber}?`;
+                    break;
+                case 1:
+                    questionPhrase = `Да это легко! В следующий раз нормально загадывай и нормально будет. Ты загадал ${answerNumber}?`;
+                    break;
+                case 2:
+                    questionPhrase = `Уверен, что это число ${answerNumber}?`;
+                    break;
+                default:
+                    questionPhrase = `Вы загадали число ${answerNumber}?`;
+            }
+            
+            answerField.innerText = questionPhrase;
         }
     }
-})
+});
 
 document.getElementById('btnEqual').addEventListener('click', function () {
     if (gameRun){
-        answerField.innerText = `Я всегда угадываю\n\u{1F60E}`
+        const successRandom = Math.round(Math.random() * 2);
+        let successPhrase;
+        switch (successRandom) {
+            case 0:
+                successPhrase = `Я всегда угадываю, разве может быть иначе!\n\u{1F60E}`;
+                break;
+            case 1:
+                successPhrase = `Естественно это было число ${answerNumber}!\n\u{1F389}`;
+                break;
+            case 2:
+                successPhrase = `Ура! Я угадал число ${answerNumber}!\n\u{1F973} Еще будешь загадывать или с тебя хватит?`;
+                break;
+            default:
+                successPhrase = `Я всегда угадываю!\n\u{1F60E}`;
+        }
+        
+        answerField.innerText = successPhrase;
         gameRun = false;
     }
-})
-
+});
